@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D100 Fracasos y otras historias</title>
+</head>
+<body>
+    <h2>USAR CON PRECAUCIÓN</h2>
+    <p>Para hacer una prueba de habilidad, simplemente introduce el valor de tu habilidad<br>
+        en el recuadro "Introduce tu valor de habilidad:" y luego pulsa "Tira los dados". ¡Mucha suerte!</p>
+        <p>Introduce tu valor de habilidad:</p>
+<input id="valor" type="number"></input>
+<button id="2" onclick="tirada()">Tira los dados</button><br>
+<p id="resultado">A ver, a ver...<p>
+<p id="comentario" style="color: white"></p><br>
+</body>
+<script>
+function tirada(){
+    let numero = (Math.ceil(Math.random()*100))
+    let valor = document.getElementById("valor").value
+    if(numero==valor && valor<96){
+        document.getElementById("resultado").innerHTML = "Has sacado un "+ numero+"."
+        document.getElementById("comentario").innerHTML = "¡Acierto por los pelos!"
+        document.getElementById("comentario").style.color="#18FA41"
+    } else if (numero<valor && numero>6 && valor<96){
+        document.getElementById("resultado").innerHTML = "Has sacado un "+ numero+"."
+        document.getElementById("comentario").innerHTML = "Has conseguido superar la tirada."
+        document.getElementById("comentario").style.color="green"
+    } else if (numero>valor && numero<95 && valor<96){
+        document.getElementById("resultado").innerHTML = "Has sacado un "+ numero+"."
+        document.getElementById("comentario").innerHTML = "Has fallado la tirada."
+        document.getElementById("comentario").style.color="red"
+    } else if(numero>=96 && valor<96){
+        document.getElementById("resultado").innerHTML = "¡Has sacado un "+ numero+"!"
+        document.getElementById("comentario").innerHTML = "¡Menudo fracaso mas MISERABLE!"
+        document.getElementById("comentario").style.color="#F4A32F"
+    } else if(numero<=5 && valor<96){
+        document.getElementById("resultado").innerHTML = "¡Has sacado un "+ numero+"!"
+        document.getElementById("comentario").innerHTML = "¡Has conseguido un acierto crítico!"
+        document.getElementById("comentario").style.color="blue"
+    } else if(valor>=95){
+        document.getElementById("resultado").innerHTML = "No te flipes que el máximo valor de habilidad es 95."
+        document.getElementById("comentario").innerHTML = "Ingresa un valor de habilidad válido y repite la tirada."
+        document.getElementById("comentario").style.color="black"
+    }
+}
+</script>
+</html>
+
+// TO DO: quitar la etiqueta script para hacer la pagina segura.
+// TO DO: añadir tiradas con dados de mas caras (actualmente solo se puede usar para tiraddas de dados de 100 caras).
+// TO DO: añadir poder lanzar mas de un dado.
+// TO DO: añadir hojas de personaje. 
+// TO DO: añadir botones para que con un solo click en la habilidad se haga una tirada con el dado que corresponda.
+// TO DO: añadir css.
